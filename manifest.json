@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "ad-remover",
+  "description": "add remover for youtube",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["main.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
