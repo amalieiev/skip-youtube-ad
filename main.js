@@ -24,7 +24,7 @@ removeAdBtn.addEventListener('click', function (ev) {
 });
 
 setInterval(function () {
-    if (document.querySelector('.ytp-ad-progress-list').children.length) {
+    if (document.querySelector('.ytp-ad-duration-remaining') || document.querySelector('.ytp-ad-progress-list').children.length) {
         document.querySelector('.html5-video-container').appendChild(removeAdBtn);
     }
 }, 1000);
