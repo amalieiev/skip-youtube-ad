@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "ad-remover",
-  "description": "add remover for youtube",
+  "name": "skip-youtube-ad",
+  "description": "Adds skip ad button",
   "version": "1.0",
   "content_scripts": [
     {

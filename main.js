@@ -1,30 +1,29 @@
-const removeAdBtn = document.createElement('div');
+var inProgress = false;
 
-removeAdBtn.style.zIndex = '100';
-removeAdBtn.style.position = 'relative';
-removeAdBtn.style.display = 'inline-block';
-removeAdBtn.style.cursor = 'pointer';
-removeAdBtn.style.background = '#ff0000';
-removeAdBtn.style.color = 'white';
-removeAdBtn.style.padding = '50px';
-removeAdBtn.style.color = 'white';
-removeAdBtn.textContent = 'Убрать рекламу';
-
-removeAdBtn.addEventListener('click', function (ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
-
+function skipAds() {
     document.querySelector('ytd-watch-next-secondary-results-renderer ytd-thumbnail a').click();
 
     setTimeout(function () {
         history.back();
+
+        setTimeout(function () {
+            inProgress = false;
+        }, 500);
     }, 100);
+}
 
-    document.querySelector('.html5-video-container').removeChild(removeAdBtn);
-});
+function hasAds() {
+    return document.querySelector('.ytp-ad-duration-remaining') ||
+        document.querySelector('.ytp-ad-progress-list').children.length;
+}
 
-setInterval(function () {
-    if (document.querySelector('.ytp-ad-duration-remaining') || document.querySelector('.ytp-ad-progress-list').children.length) {
-        document.querySelector('.html5-video-container').appendChild(removeAdBtn);
-    }
-}, 1000);
+function watch() {
+    setInterval(function () {
+        if (hasAds() && !inProgress) {
+            inProgress = true;
+            skipAds();
+        }
+    }, 2000);
+}
+
+watch();
